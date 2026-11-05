@@ -7,7 +7,7 @@
 # Works with Miniforge (recommended), Miniconda, or Anaconda on
 # macOS (Intel and Apple Silicon), Windows, and Linux.
 
-name: 290A
+name: env
 channels:
   - conda-forge
 dependencies:
