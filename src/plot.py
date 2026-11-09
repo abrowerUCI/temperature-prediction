@@ -9,6 +9,9 @@ def barplot(x, y, hue, xlabel, ylabel, title, figname):
     fig, ax = plt.subplots(figsize=(10, 7))
 
     sns.barplot(x=x, y=y, hue=hue, ax=ax)
+    for container in ax.containers:
+        ax.bar_label(container, fmt="%.3f", padding=3)
+    ax.margins(y=0.1)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_title(title)
