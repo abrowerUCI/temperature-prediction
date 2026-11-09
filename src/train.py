@@ -1,6 +1,5 @@
 import copy
 import numpy as np
-from sklearn.metrics import r2_score
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
@@ -24,7 +23,9 @@ def train_model(
     patience=25,
     lr_decay=1.0,
 ):
-    """Train a regression network and restore the weights with the best validation loss."""
+    """
+    Train a regression network and restore the weights with the best validation loss.
+    """
 
     def as_batch(features, labels):
         x = torch.as_tensor(np.asarray(features), dtype=torch.float32)
@@ -76,7 +77,8 @@ def train_model(
     return model, stopped
 
 def make_windows(features, labels, history):
-    """Stack the previous `history` days into each sample.
+    """
+    Stack the previous `history` days into each sample.
 
     Sample t uses days [t - history + 1, t] and the label already stored on day t.
     """
