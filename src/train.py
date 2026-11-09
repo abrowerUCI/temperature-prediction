@@ -25,6 +25,23 @@ def train_model(
 ):
     """
     Train a regression network and restore the weights with the best validation loss.
+
+    Args:
+        model (PyTorch Model): model being trained
+        X_train (2d array): training predictors
+        y_train (1d array): training true y values
+        X_val (2d array): validation predictors
+        y_val, (1d array): validation true y values
+        criterion=nn.MSELoss(): criterion to assess model
+        epochs=300: number of epochs
+        batch_size=32: training batch size
+        lr=1e-3: learning rate
+        patience=25: patience threshold
+        lr_decay=1.0: learning rate decay
+
+    Return:
+        model (PyTorch Model): the model at the best epoch
+        epoch (int): the best epoch
     """
 
     def as_batch(features, labels):
@@ -78,9 +95,15 @@ def train_model(
 
 def make_windows(features, labels, history):
     """
-    Stack the previous `history` days into each sample.
+    Stack the previous `history` days into each sample. Sample t uses days [t - history + 1, t] and the label already stored on day t.
 
-    Sample t uses days [t - history + 1, t] and the label already stored on day t.
+    Args:
+        features (2-d array): Predictor values with shape (days, n_features)
+        labels (array): Target values with one entry per day
+        history (int): Number of consecutive days in each sample
+    Return:
+        X (3-d array): Windowed features with shape (days - history + 1, history, n_features)
+        y (array): Labels aligned with each window, length days - history + 1
     """
     features = np.asarray(features)
     labels = np.asarray(labels)

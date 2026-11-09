@@ -1,15 +1,17 @@
 import glob
-import pandas as pd
 import xarray as xr
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 def load_data(filepath="./data/"):
     """
-    Loads the concatenated netCDF data
+    Loads the concatenated netCDF data with some feature engineering
 
     Args:
         filepath (str): directory where the data is held
+
+    Return:
+        An Xarray Dataset at UCI's grid cell with two temperature (C) rolling averages (3 and 7 days) and the target temperature
     """
     DATA_DIR = filepath
 
@@ -45,7 +47,7 @@ def split_and_scale(ds, FEATURES, TARGET="target_t2m", gap=7, seed=222, scale=Fa
         gap (int): adds a gap in the validation and test data to ensure no data leakage when predicting on rolling averages
 
     Return:
-        X_train, y_train, X_val, y_val, X_test, y_test
+        X_train, y_train, X_val, y_val, X_test, y_test, (if scale=true) X_scaler and y_scaler
     """
     ds = ds.dropna(dim="valid_time")
 
@@ -88,6 +90,9 @@ def get_dates(ds, seed=222, gap=7):
         ds (Xrray Dataset)
         seed (int)
         gap (int)
+
+    Return:
+        2 numpy arrays: one with the dates and one with the true y over the dates
     """
     ds = ds.dropna(dim="valid_time")
     
