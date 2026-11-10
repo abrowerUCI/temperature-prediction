@@ -1,0 +1,6 @@
+Model,Test R²,Test RMSE (°C),Test skill
+Baseline (persistence),0.142,3.817,0.000
+"Linear regression, 3 variables",0.340,3.348,0.123
+"Neural network, 3 variables",0.391 ± 0.012,3.216 ± 0.031,0.157 ± 0.008
+"Neural network, 7 variables",0.368 ± 0.015,3.275 ± 0.040,0.142 ± 0.010
+LSTM neural network,0.526 ± 0.019,2.793 ± 0.056,0.268 ± 0.015

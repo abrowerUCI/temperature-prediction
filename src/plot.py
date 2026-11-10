@@ -8,9 +8,9 @@ def barplot(x, y, hue, xlabel, ylabel, title, figname):
     """
     fig, ax = plt.subplots(figsize=(10, 7))
 
-    sns.barplot(x=x, y=y, hue=hue, ax=ax)
+    sns.barplot(x=x, y=y, hue=hue, errorbar="sd", capsize=0.2, ax=ax)
     for container in ax.containers:
-        ax.bar_label(container, fmt="%.3f", padding=3)
+        ax.bar_label(container, fmt="%.3f", label_type="center", color="white", fontweight="bold")
     ax.margins(y=0.1)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -24,7 +24,7 @@ def lineplot(x, y, hue, xlabel, ylabel, title, figname):
     """
     fig, ax = plt.subplots(figsize=(10, 7))
 
-    sns.lineplot(x=x, y=y, hue=hue, ax=ax)
+    sns.lineplot(x=x, y=y, hue=hue, errorbar="sd", ax=ax)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_title(title) 

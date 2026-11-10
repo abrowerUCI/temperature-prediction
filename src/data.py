@@ -34,7 +34,7 @@ def load_data(filepath="./data/"):
 
     return ds_uci
 
-def split_and_scale(ds, FEATURES, TARGET="target_t2m", gap=7, seed=222, scale=False):
+def split_and_scale(ds, FEATURES, TARGET="target_t2m", gap=7, seed=0, scale=False):
     """
     Splits and rescales data into a training, validation, and test set
 
@@ -82,7 +82,7 @@ def split_and_scale(ds, FEATURES, TARGET="target_t2m", gap=7, seed=222, scale=Fa
 
     return X_train, y_train, X_val, y_val, X_test, y_test
 
-def get_dates(ds, seed=222, gap=7):
+def get_dates(ds, seed=0, gap=7):
     """
     Gets the dates from the split being tested
 
