@@ -6,7 +6,13 @@
 
 How accurately can machine learning predict the daily mean temperature at UC Irvine one week in advance with only local data, and how does model complexity affect accuracy?
 
-The data used are from ERA5 reanalysis daily means of 2 m temperature, 10 m wind (u and v components), mean sea level pressure, and total precipitation over the continental US for 2009–2010 with calculated 3 and 7 day precipitation averages. The models use the grid cell nearest UC Irvine (33.75° N, 117.75° W). Each model predicts the temperature 7 days ahead and is compared against persistence, a baseline that predicts the temperature in 7 days will equal today's. Skill is $1 - \text{RMSE}_{\text{model}} / \text{RMSE}_{\text{persistence}}$, so 0 means no better than persistence and 1 means a perfect forecast.
+The data used are from ERA5 reanalysis daily means of 2 m temperature, 10 m wind (u and v components), mean sea level pressure, and total precipitation over the continental US for 2009–2010 with calculated 3 and 7 day precipitation averages. The models use the grid cell nearest UC Irvine (33.75° N, 117.75° W). Each model predicts the temperature 7 days ahead and is compared against persistence, a baseline that predicts the temperature in 7 days will equal today's. Skill is defined as
+
+```math
+\text{skill} = 1 - \frac{\text{RMSE}_{\text{model}}}{\text{RMSE}_{\text{persistence}}}
+```
+
+so 0 means no better than persistence and 1 means a perfect forecast.
 
 The data is split by time: 2009 for training, January–June 2010 for validation (early stopping), and July–December 2010 for testing. Rows are dropped at the start of the validation and test sets so that no training target falls inside a later split.
 
